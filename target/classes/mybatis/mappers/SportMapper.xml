@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redrain.mapper.SportMapper">
+
+    <select id="getCount" parameterType="sport" resultType="long">
+        select count(id) from sport
+        <where>
+            <if test="id !=null">
+                and id != #{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="getList" parameterType="sport" resultType="sport">
+        select sport.* from sport
+        <where>
+            <if test="id !=null and id !=''">
+                and sport.id = #{id}
+            </if>
+            <if test="sportName !=null and sportName !=''">
+                and sport.sportName = #{sportName}
+            </if>
+            <if test="description !=null and description !=''">
+                and sport.description = #{description}
+            </if>
+            <if test="calorie !=null and calorie !=''">
+                and sport.calorie = #{calorie}
+            </if>
+            <if test="calorieUnit !=null and calorieUnit !=''">
+                and sport.calorieUnit = #{calorieUnit}
+            </if>
+            <if test="coverImg !=null and coverImg !=''">
+                and sport.coverImg = #{coverImg}
+            </if>
+            <if test="state>0">
+                and sport.state=#{state}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="sport">
+        insert into sport
+        (id,sportName,description,calorie,calorieUnit,coverImg)
+        values
+        (null,#{sportName},#{description},#{calorie},#{calorieUnit},#{coverImg})
+    </insert>
+
+    <update id="delete" parameterType="sport">
+        update sport set state=2 where id=#{id}
+    </update>
+
+    <update id="update" parameterType="sport">
+        update sport
+        set
+        sportName=#{sportName},
+        description=#{description},
+        calorie=#{calorie},
+        calorieUnit=#{calorieUnit},
+        coverImg=#{coverImg}
+        where id=#{id}
+    </update>
+
+    <update id="updateState" parameterType="sport">
+        update sport
+        set state= #{state}
+        where id=#{id}
+    </update>
+
+</mapper>
+

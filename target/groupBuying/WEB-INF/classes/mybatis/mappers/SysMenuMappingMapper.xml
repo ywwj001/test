@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redrain.mapper.SysMenuMappingMapper">
+
+    <select id="getList" parameterType="sysMenuMapping" resultType="sysMenuMapping">
+        select menu.* from
+        ( select sys_menu_mapping.*,sys_menu.*
+        from sys_menu_mapping
+        left join sys_menu on sys_menu.id=sys_menu_mapping.menuId
+        <where>
+            <if test="sysUserId !=null and sysUserId !=''">
+                and sys_menu_mapping.sysUserId = #{sysUserId}
+            </if>
+            <if test="menuId !=null and menuId !=''">
+                and sys_menu_mapping.menuId = #{menuId}
+            </if>
+        </where>
+        ) menu
+        order by menu.sort desc
+    </select>
+
+    <insert id="add" parameterType="sysMenuMapping">
+        insert into sys_menu_mapping
+        (sysUserId,menuId)
+        values
+        (#{sysUserId},#{menuId})
+    </insert>
+
+    <delete id="delete" parameterType="sysMenuMapping">
+        delete from sys_menu_mapping
+        <where>
+            sys_menu_mapping.sysUserId = #{sysUserId}
+        </where>
+    </delete>
+</mapper>
+

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redrain.mapper.DietitianMapper">
+
+    <select id="getCount" parameterType="dietitian" resultType="long">
+        select count(id) from dietitian
+        <where>
+            <if test="id !=null">
+                and id != #{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="getList" parameterType="dietitian" resultType="dietitian">
+        select dietitian.* from dietitian
+        <where>
+            <if test="id !=null and id !=''">
+                and dietitian.id = #{id}
+            </if>
+            <if test="searchContent !=null and searchContent !=''">
+                and (dietitian.nickName like '%${searchContent}%')
+            </if>
+            <if test="nickName !=null and nickName !=''">
+                and dietitian.nickName = #{nickName}
+            </if>
+            <if test="gender !=null and gender !=''">
+                and dietitian.gender = #{gender}
+            </if>
+            <if test="avatarUrl !=null and avatarUrl !=''">
+                and dietitian.avatarUrl = #{avatarUrl}
+            </if>
+            <if test="phone !=null and phone !=''">
+                and dietitian.phone = #{phone}
+            </if>
+            <if test="price !=null and price !=''">
+                and dietitian.price = #{price}
+            </if>
+            <if test="state>0">
+                and dietitian.state=#{state}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="dietitian">
+        insert into dietitian
+        (id,nickName,gender,avatarUrl,phone,price)
+        values
+        (null,#{nickName},#{gender},#{avatarUrl},#{phone},#{price})
+    </insert>
+
+    <update id="delete" parameterType="dietitian">
+        update dietitian set state=2 where id=#{id}
+    </update>
+
+    <update id="update" parameterType="dietitian">
+        update dietitian
+        set
+        nickName=#{nickName},
+        gender=#{gender},
+        avatarUrl=#{avatarUrl},
+        phone=#{phone},
+        price=#{price}
+        where id=#{id}
+    </update>
+
+    <update id="updateState" parameterType="dietitian">
+        update dietitian
+        set state= #{state}
+        where id=#{id}
+    </update>
+
+</mapper>
+

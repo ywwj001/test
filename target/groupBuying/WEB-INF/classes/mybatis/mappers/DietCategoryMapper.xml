@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redrain.mapper.DietCategoryMapper">
+
+    <select id="getCount" parameterType="dietCategory" resultType="long">
+        select count(id) from diet_category
+        <where>
+            <if test="id !=null">
+                and id != #{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="getList" parameterType="dietCategory" resultType="dietCategory">
+        select diet_category.* from diet_category
+        <where>
+            <if test="id !=null and id !=''">
+                and diet_category.id = #{id}
+            </if>
+            <if test="searchContent !=null and searchContent !=''">
+                and (diet_category.name like '%${searchContent}%')
+            </if>
+            <if test="state>0">
+                and diet_category.state=#{state}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="dietCategory">
+        insert into diet_category
+        (id,name)
+        values
+        (null,#{name})
+    </insert>
+
+    <update id="delete" parameterType="dietCategory">
+        update diet_category set state=2 where id=#{id}
+    </update>
+
+    <update id="update" parameterType="dietCategory">
+        update diet_category
+        set
+        name=#{name}
+        where id=#{id}
+    </update>
+
+    <update id="updateState" parameterType="dietCategory">
+        update diet_category
+        set state= #{state}
+        where id=#{id}
+    </update>
+
+</mapper>
+

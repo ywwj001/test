@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redrain.mapper.MoneyChargeRecordMapper">
+
+    <select id="getCount" parameterType="moneyChargeRecord" resultType="long">
+        select count(1) from money_charge_record
+    </select>
+
+    <select id="getList" parameterType="moneyChargeRecord" resultType="moneyChargeRecord">
+        select money_charge_record.*
+         ,user.nickName as nickName
+         from money_charge_record
+        left join user on user.id=money_charge_record.uid
+        <where>
+            <if test="id !=null and id !=''">
+                and money_charge_record.id = #{id}
+            </if>
+            <if test="money !=null and money !=''">
+                and money_charge_record.money = #{money}
+            </if>
+            <if test="uid !=null and uid !=''">
+                and money_charge_record.uid = #{uid}
+            </if>
+            <if test="state>0">
+                and  money_charge_record.state=#{state}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="moneyChargeRecord">
+        insert into money_charge_record
+        (id,money,uid)
+        values
+        (null,#{money},#{uid})
+    </insert>
+
+    <update id="delete" parameterType="moneyChargeRecord">
+        update money_charge_record set state=2 where id=#{id}
+    </update>
+
+    <update id="update" parameterType="moneyChargeRecord">
+        update money_charge_record
+        set
+        money=#{money},
+        uid=#{uid}
+        where id=#{id}
+    </update>
+
+    <update id="updateState" parameterType="moneyChargeRecord">
+        update money_charge_record
+        set state= #{state}
+        where id=#{id}
+    </update>
+
+</mapper>
+

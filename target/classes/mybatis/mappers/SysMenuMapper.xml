@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redrain.mapper.SysMenuMapper">
+
+    <select id="getList" parameterType="sysMenu" resultType="sysMenu">
+        select * from sys_menu
+        <where>
+            <if test="id !=null and id !=''">
+                and id = #{id}
+            </if>
+            <if test="name !=null and name !=''">
+                and name like '%${name}%'
+            </if>
+            <if test="url !=null and url !=''">
+                and url = #{url}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="sysMenu">
+        insert into sys_menu
+        (id,name,url)
+        values
+        (null,#{name},#{url})
+    </insert>
+
+    <update id="update" parameterType="sysMenu">
+        update sys_menu
+        set
+        name=#{name},
+        url=#{url}
+        where id=#{id}
+    </update>
+
+
+</mapper>
+

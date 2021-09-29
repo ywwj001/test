@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redrain.mapper.ArticleMapper">
+
+    <select id="getCount" parameterType="article" resultType="long">
+        select count(id) from article
+        <where>
+            <if test="id !=null">
+                and id != #{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="getList" parameterType="article" resultType="article">
+        select article.* from article
+        <where>
+            <if test="id !=null and id !=''">
+                and article.id = #{id}
+            </if>
+            <if test="searchContent !=null and searchContent !=''">
+                and (article.title like '%${searchContent}%')
+            </if>
+            <if test="detail !=null and detail !=''">
+                and article.detail = #{detail}
+            </if>
+            <if test="coverImg !=null and coverImg !=''">
+                and article.coverImg = #{coverImg}
+            </if>
+            <if test="state>0">
+                and article.state=#{state}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="article">
+        insert into article
+        (id,title,detail,coverImg)
+        values
+        (null,#{title},#{detail},#{coverImg})
+    </insert>
+
+    <update id="delete" parameterType="article">
+        update article set state=2 where id=#{id}
+    </update>
+
+    <update id="update" parameterType="article">
+        update article
+        set
+        title=#{title},
+        detail=#{detail},
+        coverImg=#{coverImg}
+        where id=#{id}
+    </update>
+
+    <update id="updateState" parameterType="article">
+        update article
+        set state= #{state}
+        where id=#{id}
+    </update>
+
+</mapper>
+

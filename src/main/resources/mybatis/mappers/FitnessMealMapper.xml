@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redrain.mapper.FitnessMealMapper">
+
+    <select id="getCount" parameterType="fitnessMeal" resultType="long">
+        select count(id) from fitness_meal
+        <where>
+            <if test="id !=null">
+                and id != #{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="getList" parameterType="fitnessMeal" resultType="fitnessMeal">
+        select fitness_meal.* from fitness_meal
+        <where>
+            <if test="id !=null and id !=''">
+                and fitness_meal.id = #{id}
+            </if>
+<if test="searchContent !=null and searchContent !=''">
+                and (fitness_meal.name like '%${searchContent}%')
+            </if>            <if test="description !=null and description !=''">
+                and fitness_meal.description = #{description}
+            </if>
+            <if test="constituents !=null and constituents !=''">
+                and fitness_meal.constituents = #{constituents}
+            </if>
+            <if test="coverImg !=null and coverImg !=''">
+                and fitness_meal.coverImg = #{coverImg}
+            </if>
+            <if test="crowd !=null and crowd !=''">
+                and fitness_meal.crowd = #{crowd}
+            </if>
+            <if test="detail !=null and detail !=''">
+                and fitness_meal.detail = #{detail}
+            </if>
+            <if test="state>0">
+                and fitness_meal.state=#{state}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="fitnessMeal">
+        insert into fitness_meal
+        (id,name,description,constituents,coverImg,crowd,detail)
+        values
+        (null,#{name},#{description},#{constituents},#{coverImg},#{crowd},#{detail})
+    </insert>
+
+    <update id="delete" parameterType="fitnessMeal">
+        update fitness_meal set state=2 where id=#{id}
+    </update>
+
+    <update id="update" parameterType="fitnessMeal">
+        update fitness_meal
+        set
+        name=#{name},
+        description=#{description},
+        constituents=#{constituents},
+        coverImg=#{coverImg},
+        crowd=#{crowd},
+        detail=#{detail}
+        where id=#{id}
+    </update>
+
+    <update id="updateState" parameterType="fitnessMeal">
+        update fitness_meal
+        set state= #{state}
+        where id=#{id}
+    </update>
+
+</mapper>
+

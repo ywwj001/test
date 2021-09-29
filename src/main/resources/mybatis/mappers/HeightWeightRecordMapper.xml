@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redrain.mapper.HeightWeightRecordMapper">
+
+    <select id="getCount" parameterType="heightWeightRecord" resultType="long">
+        select count(1) from height_weight_record
+        <where>
+            <if test="uid !=null and uid !=''">
+                and height_weight_record.uid = #{uid}
+            </if>
+            <if test="recordDay !=null">
+                and height_weight_record.recordDay = #{recordDay}
+            </if>
+        </where>
+    </select>
+
+    <select id="getList" parameterType="heightWeightRecord" resultType="heightWeightRecord">
+        select height_weight_record.* from height_weight_record
+        <where>
+            <if test="height !=null and height !=''">
+                and height_weight_record.height = #{height}
+            </if>
+            <if test="weight !=null and weight !=''">
+                and height_weight_record.weight = #{weight}
+            </if>
+            <if test="bmi !=null and bmi !=''">
+                and height_weight_record.bmi = #{bmi}
+            </if>
+            <if test="recordDay !=null">
+                and height_weight_record.recordDay = #{recordDay}
+            </if>
+            <if test="remark !=null and remark !=''">
+                and height_weight_record.remark = #{remark}
+            </if>
+            <if test="uid !=null and uid !=''">
+                and height_weight_record.uid = #{uid}
+            </if>
+            <if test="state>0">
+                and height_weight_record.state=#{state}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="heightWeightRecord">
+        insert into height_weight_record
+        (height,weight,bmi,recordDay,remark,uid)
+        values
+        (#{height},#{weight},#{bmi},#{recordDay},#{remark},#{uid})
+    </insert>
+
+    <update id="delete" parameterType="heightWeightRecord">
+        update height_weight_record set state=2 where id=#{id}
+    </update>
+
+    <update id="update" parameterType="heightWeightRecord">
+        update height_weight_record
+        set
+        height=#{height},
+        weight=#{weight},
+        bmi=#{bmi},
+        remark=#{remark}
+        where
+         recordDay=#{recordDay} and   uid=#{uid}
+    </update>
+
+    <update id="updateState" parameterType="heightWeightRecord">
+        update height_weight_record
+        set state= #{state}
+        where
+          recordDay=#{recordDay} and   uid=#{uid}
+    </update>
+
+</mapper>
+

@@ -1,0 +1,44 @@
+<xml>
+    <appid><![CDATA[wx4059813195cdece0]]></appid>
+    <bank_type><![CDATA[ABC_DEBIT]]></bank_type>
+    <cash_fee><![CDATA[1]]></cash_fee>
+    <fee_type><![CDATA[CNY]]></fee_type>
+    <is_subscribe><![CDATA[N]]></is_subscribe>
+    <mch_id><![CDATA[1486565682]]></mch_id>
+    <nonce_str><![CDATA[MRFGRSOVJPQK9DP]]></nonce_str>
+    <openid><![CDATA[omMGP4ndVxENZy5FpU6OCLQkRlAI]]></openid>
+    <out_trade_no><![CDATA[155557313101590646]]></out_trade_no>
+    <result_code><![CDATA[SUCCESS]]></result_code>
+    <return_code><![CDATA[SUCCESS]]></return_code>
+    <sign><![CDATA[D3D92F2ECFCEA1F95F641E75789532E3]]></sign>
+    <time_end><![CDATA[20190418155141]]></time_end>
+    <total_fee>1</total_fee>
+    <trade_type><![CDATA[JSAPI]]></trade_type>
+    <transaction_id><![CDATA[4200000306201904183304888481]]></transaction_id>
+</xml>
+
+
+<xml>
+<return_code>SUCCESS</return_code>
+<appid><![CDATA[wx4059813195cdece0]]></appid>
+<mch_id><![CDATA[1486565682]]></mch_id>
+<nonce_str><![CDATA[04269f577cfdec84f5096e6a9664a7ec]]></nonce_str>
+<req_info>
+    <![CDATA[+4xL6GCus6/x/y8O5+Z/JKxcMw/t4sIeQQqhADFaYcaX9jDib8y7VwCnTvm5JpWA6R7K4wxtpPxi3awgeqJtK+iG5s0+sgeJ4oFS3qTpzlhPIfErnxXTMnQINE5LYMOlpXv4Jdz0ECCCoTUCDzzr6iNMi5Y6XkEJVItL9lpT3Hc8KnT18jlU8zc6CiAl0uU0XTPYkGeGECpgaVW+3VOnmAmWFCzapztIaonYCqwSxz0UEbm9TgRnqKVjmTFxOC2JeSP/x3AkL/YVk/br+0ypqf3r3JIiZE3LlEUQaYHOYMc92Tp8rdGCZe2x9e8IoWrGTIuYZS1UuLobqXPN7rnIS32lZO5eZwpClt9OCXDQwWTPwfeSrId0K//hGQufTm8QWVfBfwSD/ygMietXm2+Uj2p4jwa0T5daZY2qscpk5+PahoTIicVZFTQRunl8F/KCk2dyyCyvkqrGC/6y0qYrr6EQAWKLI7A0rpoG1ajwttXNxeDi3ZUMQ8fUu77Ok9/Ub1sSG2Q1U4IRPdWrokGZFnBxAgItQwS3mlh++dN1yfaZkdavXLrcZADCPk2/mm2bVubvtzh6SyvblGKlUN49da0lAH6/00bEE8CapBmU78Xa4KIKdEczhXSo91K69/bIz4k0wmjtZIpqLc0kE/N3tusswriATtbErh0G+JOmuVfDLTGhbDH9LitZor2FpZ4UmTs21n3LGzRULehUGtDSyGkOG2sxXfuZ0ExAP2oacn8JH08JBL9AlUCYUXLaFoyR5gzNAf1W5mezkNyZS1ksWjYWIssPz2i4I6JYXXGVzVdwZAoyYM0vszNo5GapH+5z64brXie4B+6o686SZPxfiQl3OHs5nmwXFxj1sWtCitkcGOeYOjlK7xgorBYJVQkiTae4UG5TLO4cLAfMtoo/Awq7GvCPhp4QPgLRMgvKdUYH331Cy/k3ei870EXWOQBRsTZK0QFzupcoFYwE4b17g6kMijrBXdSCd46jwItLmHQMa8sj7m7o0tFlzbyRcE9kFqp3ytK9yjyh4MugsqwkMhxRG4NMAU8bJjWa+aa86RbpUB5jca3+/AJt4ZDhA5HZ]]></req_info>
+</xml>
+        <!--解密后-->
+<root>
+<out_refund_no><![CDATA[155564449583964228]]></out_refund_no>
+<out_trade_no><![CDATA[155564449583964228]]></out_trade_no>
+<refund_account><![CDATA[REFUND_SOURCE_UNSETTLED_FUNDS]]></refund_account>
+<refund_fee><![CDATA[1]]></refund_fee>
+<refund_id><![CDATA[50000200012019041909201897096]]></refund_id>
+<refund_recv_accout><![CDATA[农业银行借记卡0676]]></refund_recv_accout>
+<refund_request_source><![CDATA[API]]></refund_request_source>
+<refund_status><![CDATA[SUCCESS]]></refund_status>
+<settlement_refund_fee><![CDATA[1]]></settlement_refund_fee>
+<settlement_total_fee><![CDATA[1]]></settlement_total_fee>
+<success_time><![CDATA[2019-04-19 11:29:20]]></success_time>
+<total_fee><![CDATA[1]]></total_fee>
+<transaction_id><![CDATA[4200000292201904192938534090]]></transaction_id>
+</root>

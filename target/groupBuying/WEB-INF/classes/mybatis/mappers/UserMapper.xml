@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redrain.mapper.UserMapper">
+
+    <select id="getCount" parameterType="user" resultType="long">
+        select count(id) from user
+        <where>
+            <if test="id !=null">
+                and id != #{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="getList" parameterType="user" resultType="user">
+        select user.* from user
+        <where>
+            <if test="id !=null and id !=''">
+                and user.id = #{id}
+            </if>
+            <if test="username !=null and username !=''">
+                and user.username = #{username}
+            </if>
+            <if test="password !=null and password !=''">
+                and user.password = #{password}
+            </if>
+            <if test="nickName !=null and nickName !=''">
+                and user.nickName = #{nickName}
+            </if>
+            <if test="gender !=null and gender !=''">
+                and user.gender = #{gender}
+            </if>
+            <if test="avatarUrl !=null and avatarUrl !=''">
+                and user.avatarUrl = #{avatarUrl}
+            </if>
+            <if test="phone !=null and phone !=''">
+                and user.phone = #{phone}
+            </if>
+            <if test="address !=null and address !=''">
+                and user.address = #{address}
+            </if>
+            <if test="moneyBalance !=null and moneyBalance !=''">
+                and user.moneyBalance = #{moneyBalance}
+            </if>
+            <if test="state>0">
+                and user.state=#{state}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="user">
+        insert into user
+        (id,username,password,nickName,gender,avatarUrl,phone,address,moneyBalance)
+        values
+        (null,#{username},#{password},#{nickName},#{gender},#{avatarUrl},#{phone},#{address},#{moneyBalance})
+    </insert>
+
+    <update id="delete" parameterType="user">
+        update user set state=2 where id=#{id}
+    </update>
+
+    <update id="update" parameterType="user">
+        update user
+        set
+        username=#{username},
+        password=#{password},
+        nickName=#{nickName},
+        gender=#{gender},
+        avatarUrl=#{avatarUrl},
+        phone=#{phone},
+        address=#{address},
+        moneyBalance=#{moneyBalance}
+        where id=#{id}
+    </update>
+
+    <update id="updateState" parameterType="user">
+        update user
+        set state= #{state}
+        where id=#{id}
+    </update>
+
+
+    <update id="updateBalance" parameterType="moneyChargeRecord">
+        update user
+        set moneyBalance= moneyBalance+#{money}
+        where id=#{uid}
+    </update>
+
+    <update id="minusBalance" parameterType="dietitianOrder">
+        update user
+        set moneyBalance= moneyBalance-#{payPrice}
+        where id=#{uid}
+    </update>
+
+</mapper>
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redrain.mapper.DietMapper">
+
+    <select id="getCount" parameterType="diet" resultType="long">
+        select count(id) from diet
+        <where>
+            <if test="id !=null">
+                and id != #{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="getList" parameterType="diet" resultType="diet">
+        select diet.*,diet_category.name as categoryName from diet
+        left join diet_category on diet_category.id=diet.categoryId
+        <where>
+            <if test="id !=null and id !=''">
+                and diet.id = #{id}
+            </if>
+            <if test="dietName !=null and dietName !=''">
+                and diet.dietName = #{dietName}
+            </if>
+            <if test="description !=null and description !=''">
+                and diet.description = #{description}
+            </if>
+            <if test="calorie !=null and calorie !=''">
+                and diet.calorie = #{calorie}
+            </if>
+            <if test="calorieUnit !=null and calorieUnit !=''">
+                and diet.calorieUnit = #{calorieUnit}
+            </if>
+            <if test="coverImg !=null and coverImg !=''">
+                and diet.coverImg = #{coverImg}
+            </if>
+            <if test="categoryId !=null and categoryId !=''">
+                and diet.categoryId = #{categoryId}
+            </if>
+            <if test="state>0">
+                and diet.state=#{state}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="diet">
+        insert into diet
+        (id,dietName,description,calorie,calorieUnit,coverImg,categoryId)
+        values
+        (null,#{dietName},#{description},#{calorie},#{calorieUnit},#{coverImg},#{categoryId})
+    </insert>
+
+    <update id="delete" parameterType="diet">
+        update diet set state=2 where id=#{id}
+    </update>
+
+    <update id="update" parameterType="diet">
+        update diet
+        set
+        dietName=#{dietName},
+        description=#{description},
+        calorie=#{calorie},
+        calorieUnit=#{calorieUnit},
+        coverImg=#{coverImg},
+        categoryId=#{categoryId}
+        where id=#{id}
+    </update>
+
+    <update id="updateState" parameterType="diet">
+        update diet
+        set state= #{state}
+        where id=#{id}
+    </update>
+
+</mapper>
+

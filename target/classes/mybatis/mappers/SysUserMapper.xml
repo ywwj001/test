@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redrain.mapper.SysUserMapper">
+
+    <select id="getCount" parameterType="sysUser" resultType="long">
+        select count(id) from sys_user
+        <where>
+            <if test="username !=null and username !=''">
+                and sys_user.username = #{username}
+            </if>
+        </where>
+    </select>
+
+    <select id="getList" parameterType="sysUser" resultType="sysUser">
+        select sys_user.* from sys_user
+        <where>
+            <if test="id !=null and id !=''">
+                and sys_user.id = #{id}
+            </if>
+            <if test="username !=null and username !=''">
+                and sys_user.username = #{username}
+            </if>
+            <if test="linkman !=null and linkman !=''">
+                and sys_user.linkman = #{linkman}
+            </if>
+            <if test="phone !=null and phone !=''">
+                and sys_user.phone = #{phone}
+            </if>
+            <if test="userType !=null and userType !=''">
+                and sys_user.userType = #{userType}
+            </if>
+            <if test="state!=null">
+                and sys_user.state=#{state}
+            </if>
+            <if test="searchContent !=null and searchContent !=''">
+                and (
+                sys_user.username like '%${searchContent}%'
+                or
+                sys_user.linkman like '%${searchContent}%'
+                )
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="sysUser">
+        insert into sys_user
+        (id,username,password,salt,name,sex,age,linkman,phone,headImg,userType,state)
+        values
+        (null,#{username},#{password},#{salt},#{name},#{sex},#{age},#{linkman},#{phone},#{headImg},#{userType},#{state})
+    </insert>
+
+    <update id="delete" parameterType="sysUser">
+        update sys_user set state=2 where id=#{id}
+    </update>
+
+    <update id="update" parameterType="sysUser">
+        update sys_user
+        set
+        name=#{name},
+        sex=#{sex},
+        age=#{age},
+        linkman=#{linkman},
+        phone=#{phone},
+        headImg=#{headImg}
+        where id=#{id}
+    </update>
+
+    <update id="updateState" parameterType="sysUser">
+        update sys_user
+        set state= #{state}
+        where id=#{id}
+    </update>
+
+    <update id="updatePwd" parameterType="sysUser">
+        update sys_user
+        set password=#{password},
+        salt=#{salt}
+        where id=#{id}
+    </update>
+
+</mapper>
+
