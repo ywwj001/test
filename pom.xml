@@ -8,6 +8,7 @@
     <artifactId>dietSport</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
     <properties>
         <jdk.version>1.8</jdk.version>
         <junit.version>4.12</junit.version>
