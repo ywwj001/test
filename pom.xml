@@ -30,6 +30,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <dependencies>
         <!-- log start -->
         <!-- https://mvnrepository.com/artifact/net.logstash.logback/logstash-logback-encoder -->
